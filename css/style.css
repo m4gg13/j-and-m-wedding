@@ -1,0 +1,592 @@
+/* =========================================================
+   Jacob & Maggie — Wedding Site
+   Design tokens
+   ========================================================= */
+:root {
+  --cream: #FAF7F0;
+  --cream-alt: #F1ECDF;
+  --sage: #A9BA92;
+  --sage-dark: #7E9468;
+  --sky: #9FC0CE;
+  --sky-dark: #6E9CAE;
+  --walnut: #4A3728;
+  --walnut-light: #7C5C43;
+  --gold: #C29A4B;
+  --gold-light: #DDBE85;
+  --ink: #2E2519;
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+
+  --max-width: 1120px;
+  --radius: 3px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(circle at 8% 0%, rgba(169, 186, 146, 0.28), transparent 40%),
+    radial-gradient(circle at 100% 15%, rgba(159, 192, 206, 0.28), transparent 42%),
+    radial-gradient(circle at 20% 100%, rgba(194, 154, 75, 0.16), transparent 45%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--walnut);
+  margin: 0 0 0.5em;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 500; }
+h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); }
+h3 { font-size: 1.3rem; }
+
+p { max-width: 62ch; }
+
+a {
+  color: var(--walnut);
+  text-decoration-color: var(--gold);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.75rem;
+}
+
+/* Skip link for keyboard/screen-reader users */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  background: var(--walnut);
+  color: var(--cream);
+  padding: 0.75rem 1.25rem;
+  z-index: 200;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* =========================================================
+   Navigation
+   ========================================================= */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--cream);
+  border-bottom: 2px solid var(--gold);
+}
+
+.site-nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.25rem;
+}
+
+.site-nav .brand {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--walnut);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--walnut-light);
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  color: var(--walnut);
+  border-bottom-color: var(--gold);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--walnut-light);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.6rem;
+  font-size: 1.1rem;
+  color: var(--walnut);
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .nav-toggle { display: block; }
+  .nav-links {
+    position: absolute;
+    top: 4.25rem;
+    left: 0;
+    right: 0;
+    background: var(--cream);
+    flex-direction: column;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    border-bottom: 2px solid var(--gold);
+    transition: max-height 0.25s ease;
+  }
+  .nav-links.open { max-height: 20rem; }
+  .nav-links li { border-top: 1px solid var(--cream-alt); }
+  .nav-links a { display: block; padding: 0.9rem 1.75rem; }
+}
+
+/* =========================================================
+   Hero (landing split panel)
+   ========================================================= */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  min-height: 78vh;
+}
+
+.hero-panel-walnut {
+  background: var(--walnut);
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 3rem;
+}
+
+.hero-panel-walnut .eyebrow-note {
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--gold-light);
+  margin-bottom: 1rem;
+}
+
+.hero-panel-walnut h1 {
+  color: var(--cream);
+  margin-bottom: 0.6rem;
+}
+
+.hero-panel-walnut .hero-date {
+  font-size: 1.1rem;
+  color: var(--sky);
+  margin-bottom: 1.75rem;
+}
+
+.hero-panel-scenic {
+  background: linear-gradient(155deg, var(--sage) 0%, var(--sky) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-panel-scenic svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.35;
+}
+
+@media (max-width: 860px) {
+  .hero-split { grid-template-columns: 1fr; min-height: auto; }
+  .hero-panel-scenic { min-height: 220px; }
+  .hero-panel-walnut { padding: 3rem 1.75rem; }
+}
+
+/* Wave divider between hero and next section */
+.divider-wave {
+  display: block;
+  width: 100%;
+  line-height: 0;
+  margin-top: -2px;
+}
+.divider-wave svg { width: 100%; height: 60px; display: block; }
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--walnut);
+  border-color: var(--gold);
+}
+.btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); }
+
+.btn-outline-light {
+  background: transparent;
+  color: var(--cream);
+  border-color: var(--cream);
+}
+.btn-outline-light:hover { background: var(--cream); color: var(--walnut); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--walnut);
+  border-color: var(--walnut-light);
+}
+.btn-outline:hover { background: var(--walnut); color: var(--cream); border-color: var(--walnut); }
+
+/* =========================================================
+   Sections / generic layout
+   ========================================================= */
+section { padding: 4.5rem 0; }
+.section-tight { padding: 3rem 0; }
+.section-sage { background: var(--cream-alt); }
+
+.section-heading {
+  text-align: left;
+  max-width: 640px;
+  margin-bottom: 2.5rem;
+}
+.section-heading p { color: var(--walnut-light); }
+
+/* =========================================================
+   Chapter cards (Mexico / Minnesota) on landing page
+   ========================================================= */
+.chapters-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.chapter-card {
+  background: var(--cream);
+  border: 1px solid var(--cream-alt);
+  border-radius: var(--radius);
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.chapter-badge {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--walnut);
+  margin-bottom: 0.5rem;
+}
+
+.chapter-card .location-line {
+  color: var(--walnut-light);
+  font-weight: 500;
+}
+
+@media (max-width: 760px) {
+  .chapters-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   Detail page hero (Mexico / Minnesota pages)
+   ========================================================= */
+.page-hero {
+  padding: 3.5rem 0 3rem;
+  border-bottom: 1px solid var(--cream-alt);
+}
+.page-hero .location-tag {
+  display: inline-block;
+  color: var(--walnut-light);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.detail-item {
+  border-left: 3px solid var(--gold);
+  padding-left: 1rem;
+}
+.detail-item h4 { margin-bottom: 0.25rem; }
+.detail-item p { margin: 0; color: var(--walnut-light); font-size: 0.95rem; }
+
+@media (max-width: 760px) {
+  .detail-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 500px) {
+  .detail-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   RSVP Form
+   ========================================================= */
+.rsvp-form {
+  max-width: 640px;
+  margin-top: 1.5rem;
+}
+
+.form-row {
+  margin-bottom: 1.6rem;
+}
+
+.form-row label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--walnut);
+}
+
+.form-row .hint {
+  display: block;
+  font-weight: 400;
+  color: var(--walnut-light);
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+.form-row input[type="text"],
+.form-row input[type="email"],
+.form-row input[type="number"],
+.form-row textarea,
+.form-row select {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.6rem 0.1rem;
+  border: none;
+  border-bottom: 2px solid var(--walnut-light);
+  background: transparent;
+  color: var(--ink);
+}
+
+.form-row input:focus,
+.form-row textarea:focus,
+.form-row select:focus {
+  outline: none;
+  border-bottom-color: var(--gold);
+}
+
+.radio-pills {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.radio-pills label {
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid var(--walnut-light);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+  color: var(--walnut-light);
+  transition: all 0.15s ease;
+}
+.radio-pills input { accent-color: var(--walnut); }
+.radio-pills input:checked + span,
+.radio-pills label:has(input:checked) {
+  color: var(--walnut);
+  border-color: var(--gold);
+  background: var(--cream-alt);
+}
+
+.form-success {
+  display: none;
+  background: var(--cream-alt);
+  border-left: 4px solid var(--sage-dark);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+}
+.form-success.visible { display: block; }
+.rsvp-form.hidden { display: none; }
+
+.form-note {
+  font-size: 0.85rem;
+  color: var(--walnut-light);
+  border-top: 1px dashed var(--cream-alt);
+  padding-top: 1rem;
+  margin-top: 2rem;
+}
+
+/* =========================================================
+   Timeline (schedule page)
+   ========================================================= */
+.timeline {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  border-left: 2px solid var(--gold);
+}
+.timeline li {
+  position: relative;
+  padding: 0 0 1.9rem 1.75rem;
+}
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--walnut);
+  border: 2px solid var(--cream);
+}
+.timeline .time {
+  display: block;
+  font-weight: 600;
+  color: var(--walnut-light);
+  font-size: 0.9rem;
+  margin-bottom: 0.15rem;
+}
+.timeline h4 { margin-bottom: 0.2rem; }
+.timeline p { margin: 0; color: var(--walnut-light); font-size: 0.95rem; }
+
+.schedule-toggle {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+.schedule-toggle button {
+  font-family: var(--font-body);
+  font-weight: 600;
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  border: 2px solid var(--walnut-light);
+  background: transparent;
+  color: var(--walnut-light);
+  cursor: pointer;
+}
+.schedule-toggle button[aria-selected="true"] {
+  border-color: var(--gold);
+  color: var(--walnut);
+  background: var(--cream-alt);
+}
+.schedule-panel { display: none; }
+.schedule-panel.active { display: block; }
+
+/* =========================================================
+   Wedding party
+   ========================================================= */
+.party-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.party-member { text-align: left; }
+.party-photo {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: linear-gradient(155deg, var(--sage) 0%, var(--sky) 100%);
+  margin-bottom: 1rem;
+}
+.party-member .role {
+  color: var(--walnut-light);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+@media (max-width: 760px) {
+  .party-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+  .party-grid { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+}
+
+/* =========================================================
+   Registry
+   ========================================================= */
+.registry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+.registry-card {
+  border: 1px solid var(--cream-alt);
+  border-radius: var(--radius);
+  padding: 2rem;
+  background: var(--cream);
+}
+.registry-card .icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--cream-alt);
+  border: 2px solid var(--gold);
+  margin-bottom: 1rem;
+}
+@media (max-width: 760px) {
+  .registry-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   Footer
+   ========================================================= */
+.site-footer {
+  background: var(--walnut);
+  color: var(--cream-alt);
+  border-top: 4px solid var(--gold);
+  padding: 2.75rem 0;
+  margin-top: 4rem;
+}
+.site-footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.site-footer a { color: var(--cream-alt); }
+.site-footer .footer-brand {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--cream);
+}
+.site-footer small { color: var(--walnut-light); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
