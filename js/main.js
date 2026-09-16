@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // NOTE: This is a static GitHub Pages site with no backend yet, so this
   // just shows a confirmation message locally. To actually collect RSVPs,
   // connect the form to a service like Formspree, Google Forms, or
-  // Netlify Forms, then set the <form action="..."> and remove
+  // Netlify Forms, then set the <form action="... under construction ... updates coming soon!"> and remove
   // preventDefault() below (or follow that service's setup instructions).
   document.querySelectorAll('.rsvp-form').forEach(function (form) {
     form.addEventListener('submit', function (e) {
