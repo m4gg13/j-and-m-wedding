@@ -1,0 +1,78 @@
+/* New styles for: back link, calendar, and day-of plan pages.
+   Loaded in addition to css/style.css (uses its color variables). */
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--walnut-light);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+.back-link:hover { color: var(--walnut); border-bottom-color: var(--gold); }
+
+/* Calendar */
+.calendar-card {
+  max-width: 420px;
+  background: var(--cream);
+  border: 1px solid var(--cream-alt);
+  border-top: 4px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+.calendar-card caption {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--walnut);
+  text-align: left;
+  padding-bottom: 0.75rem;
+}
+.calendar-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.calendar-table th { font-size: 0.75rem; font-weight: 600; color: var(--walnut-light); padding: 0.4rem 0; text-align: center; }
+.calendar-table td { text-align: center; padding: 0.2rem 0; font-size: 0.95rem; }
+.calendar-table td span {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2.1rem; height: 2.1rem; border-radius: 50%;
+}
+.calendar-table td.has-event span { background: var(--gold); color: var(--walnut); font-weight: 600; }
+.calendar-table td.is-wedding span { background: var(--walnut); color: var(--cream); font-weight: 600; }
+.calendar-events { list-style: none; margin: 1.5rem 0 0; padding: 0; max-width: 420px; }
+.calendar-events li { padding: 0.6rem 0; border-bottom: 1px solid var(--cream-alt); display: flex; gap: 1rem; }
+.calendar-events .cal-date { font-weight: 600; color: var(--walnut); min-width: 5.5rem; }
+.calendar-events .cal-label { color: var(--walnut-light); }
+
+/* Day-of plan pages */
+.menu-course { margin-bottom: 2rem; max-width: 640px; }
+.menu-course h3 { border-bottom: 2px solid var(--gold); padding-bottom: 0.3rem; }
+.menu-course ul { list-style: none; margin: 0; padding: 0; }
+.menu-course li { padding: 0.5rem 0; }
+.menu-course .dish { font-weight: 600; color: var(--walnut); display: block; }
+.menu-course .desc { color: var(--walnut-light); font-size: 0.9rem; }
+
+.helper-list { width: 100%; border-collapse: collapse; max-width: 820px; }
+.helper-list th, .helper-list td { text-align: left; padding: 0.8rem 1rem 0.8rem 0; border-bottom: 1px solid var(--cream-alt); vertical-align: top; }
+.helper-list th { font-size: 0.85rem; color: var(--walnut-light); }
+.helper-list td:first-child { font-weight: 600; color: var(--walnut); }
+@media (max-width: 600px) {
+  .helper-list thead { display: none; }
+  .helper-list tr { display: block; padding: 0.6rem 0; border-bottom: 1px solid var(--cream-alt); }
+  .helper-list td { display: block; border: none; padding: 0.15rem 0; }
+}
+
+.diagram-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
+.diagram-placeholder {
+  margin: 0; border: 2px dashed var(--walnut-light); border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.4); min-height: 240px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 1.5rem;
+}
+.diagram-placeholder img { max-width: 100%; height: auto; }
+.diagram-placeholder figcaption { color: var(--walnut-light); font-size: 0.9rem; margin-top: 0.5rem; }
+@media (max-width: 760px) { .diagram-grid { grid-template-columns: 1fr; } }
+
+.playlist-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.playlist-card { border: 1px solid var(--cream-alt); border-left: 4px solid var(--sky-dark); border-radius: var(--radius); padding: 1.5rem; background: var(--cream); }
+.playlist-card .moment { font-size: 0.85rem; font-weight: 600; color: var(--walnut-light); margin-bottom: 0.25rem; }
+@media (max-width: 760px) { .playlist-grid { grid-template-columns: 1fr; } }

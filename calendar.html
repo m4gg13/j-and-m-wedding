@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendar — Jacob &amp; Maggie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/plan.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-nav">
+  <div class="container">
+    <a class="brand" href="index.html">Jacob &amp; Maggie</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="mexico.html">Mexico</a></li>
+      <li><a href="minnesota.html">Minnesota</a></li>
+      <li><a href="calendar.html" aria-current="page">Calendar</a></li>
+      <li><a href="schedule.html">Full Schedule</a></li>
+      <li><a href="registry.html">Registry</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Calendar</h1>
+      <p>The key dates at a glance. The dark circle is our ceremony in Minneapolis, and gold circles are the start and end of the Mexico trip.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="calendar-card">
+        <table class="calendar-table">
+          <caption id="cal-title"></caption>
+          <thead>
+            <tr>
+              <th scope="col" abbr="Sunday">S</th><th scope="col" abbr="Monday">M</th><th scope="col" abbr="Tuesday">T</th>
+              <th scope="col" abbr="Wednesday">W</th><th scope="col" abbr="Thursday">T</th><th scope="col" abbr="Friday">F</th>
+              <th scope="col" abbr="Saturday">S</th>
+            </tr>
+          </thead>
+          <tbody id="cal-body"></tbody>
+        </table>
+      </div>
+      <ul class="calendar-events" id="cal-events"></ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p><a href="https://tally.so/r/NpajAW">Subscribe to be alerted (personally by Maggie) when something changes on our site!</a></p>
+    <span class="footer-brand">Jacob &amp; Maggie</span>
+    <small>Questions? Reach out at hello@JacobandMaggie.wedding</small>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+// ---- CALENDAR settings: edit these to change the month or events ----
+var CALENDAR = {
+  year: 2027,
+  month: 2,            // 1 = January ... 12 = December
+  events: [
+    { day: 7,  label: 'Ceremony in Minneapolis (Indeed Brewery)', wedding: true },
+    { day: 13, label: 'Mexico celebration begins (Manzanillo)' },
+    { day: 24, label: 'Mexico celebration ends' }
+  ]
+};
+
+(function () {
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var y = CALENDAR.year, m = CALENDAR.month - 1;
+  var first = new Date(y, m, 1).getDay();
+  var days = new Date(y, m + 1, 0).getDate();
+  var byDay = {};
+  CALENDAR.events.forEach(function (e) { byDay[e.day] = e; });
+  document.getElementById('cal-title').textContent = months[m] + ' ' + y;
+  var html = '', d = 1;
+  for (var row = 0; row < 6 && d <= days; row++) {
+    html += '<tr>';
+    for (var col = 0; col < 7; col++) {
+      if ((row === 0 && col < first) || d > days) { html += '<td></td>'; }
+      else {
+        var ev = byDay[d];
+        var cls = ev ? (ev.wedding ? 'has-event is-wedding' : 'has-event') : '';
+        html += '<td class="' + cls + '"><span>' + d + '</span></td>';
+        d++;
+      }
+    }
+    html += '</tr>';
+  }
+  document.getElementById('cal-body').innerHTML = html;
+  var list = '';
+  CALENDAR.events.forEach(function (e) {
+    list += '<li><span class="cal-date">' + months[m].slice(0, 3) + ' ' + e.day + '</span><span class="cal-label">' + e.label + '</span></li>';
+  });
+  document.getElementById('cal-events').innerHTML = list;
+})();
+</script>
+</body>
+</html>
